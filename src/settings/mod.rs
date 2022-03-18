@@ -6,3 +6,5 @@ pub const SITES_ORIGINS: [&'static str; 2] = [
     "https://gitlab.com/jacobean_jerboa/sample/-/raw/main/sample",
     "https://raw.githubusercontent.com/opengs/uashieldtargets/v2/sites.json",
 ];
+
+pub const READ_TIMEOUT_SECONDS: u64 = 10;
