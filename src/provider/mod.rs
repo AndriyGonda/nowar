@@ -30,7 +30,7 @@ pub fn load_sites() -> Vec<Site> {
     for origin in settings::SITES_ORIGINS {
         match load_sites_from_url(origin) {
             Ok(loaded) => sites.extend(loaded),
-            Err(_) => warn!("Unable to load from origin {:?}", origin),
+            Err(_) => warn!("Unable to load sites from origin {:?}", origin),
         }
     }
     sites
