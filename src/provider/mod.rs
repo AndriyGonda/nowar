@@ -5,7 +5,6 @@ use crate::settings;
 
 use cached::proc_macro::cached;
 use isahc::prelude::*;
-use log::warn;
 
 use proxy::Proxy;
 use site::Site;
@@ -30,7 +29,7 @@ pub fn load_sites() -> Vec<Site> {
     for origin in settings::SITES_ORIGINS {
         match load_sites_from_url(origin) {
             Ok(loaded) => sites.extend(loaded),
-            Err(_) => warn!("Unable to load sites from origin {:?}", origin),
+            Err(_) => println!("Unable to load sites from origin {:?}", origin),
         }
     }
     sites
@@ -42,7 +41,7 @@ pub fn load_proxies() -> Vec<Proxy> {
     for origin in settings::PROXY_LIST {
         match load_proxies_from_url(origin) {
             Ok(loaded) => proxies.extend(loaded),
-            Err(_) => warn!("Unable to load proxies from origin {:?}", origin),
+            Err(_) => println!("Unable to load proxies from origin {:?}", origin),
         }
     }
     proxies
