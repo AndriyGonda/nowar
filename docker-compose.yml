@@ -1,0 +1,5 @@
+version: "3"
+services:
+  nowar:
+    build: .
+    restart: on-failure
