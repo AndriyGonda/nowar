@@ -3,8 +3,8 @@ pub mod site;
 
 use crate::settings;
 
-use isahc::prelude::*;
 use cached::proc_macro::cached;
+use isahc::prelude::*;
 use log::warn;
 
 use proxy::Proxy;
@@ -24,7 +24,7 @@ fn load_sites_from_url(url: &str) -> Result<Vec<Site>, Box<dyn std::error::Error
     Ok(sites)
 }
 
-#[cached(time=600, time_refresh=true)]
+#[cached(time = 600, time_refresh = true)]
 pub fn load_sites() -> Vec<Site> {
     let mut sites: Vec<Site> = vec![];
     for origin in settings::SITES_ORIGINS {
@@ -36,7 +36,7 @@ pub fn load_sites() -> Vec<Site> {
     sites
 }
 
-#[cached(time=600, time_refresh=true)]
+#[cached(time = 600, time_refresh = true)]
 pub fn load_proxies() -> Vec<Proxy> {
     let mut proxies: Vec<Proxy> = vec![];
     for origin in settings::PROXY_LIST {
@@ -46,4 +46,18 @@ pub fn load_proxies() -> Vec<Proxy> {
         }
     }
     proxies
+}
+
+pub fn get_target_sites() -> Vec<Site> {
+    let sites = load_sites();
+    if sites.is_empty() {
+        let default_sites = settings::DEFAULT_TARGETS
+            .iter()
+            .map(|item| Site {
+                page: item.to_string(),
+            })
+            .collect::<Vec<Site>>();
+        return default_sites;
+    }
+    sites
 }
