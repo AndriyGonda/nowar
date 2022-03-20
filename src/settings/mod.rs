@@ -46,5 +46,5 @@ pub const DEFAULT_TARGETS: [&'static str; 33] = [
 
 pub const READ_TIMEOUT_SECONDS: u64 = 10;
 pub const MAX_REQUESTS_TO_SITE: u64 = 1000;
-pub const MAX_WORKERS: usize = 600;
+pub const MAX_WORKERS: usize = 600; // MAX_JOBS*1.2
 pub const MAX_JOBS: usize = 500;

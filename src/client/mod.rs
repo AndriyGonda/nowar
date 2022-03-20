@@ -1,7 +1,7 @@
+mod agent;
 use crate::provider::proxy::Proxy;
 use crate::provider::site::Site;
 use crate::settings;
-use fake_useragent::UserAgents;
 use isahc::{prelude::*, HttpClient, HttpClientBuilder};
 use std::time::Duration;
 
@@ -39,7 +39,6 @@ fn config_client_builder(
 }
 
 pub fn new_client(proxy: Option<Proxy>) -> Result<HttpClient, Box<dyn std::error::Error>> {
-    let user_agents = UserAgents::new();
     let mut client_builder = config_client_builder(proxy)?;
     client_builder = client_builder.default_headers(&[
         ("Content-Type", "text/html;"),
@@ -48,7 +47,7 @@ pub fn new_client(proxy: Option<Proxy>) -> Result<HttpClient, Box<dyn std::error
         ("Accept", "text/*, text/html, text/html;level=1, */*"),
         ("Accept-Language", "ru"),
         ("Accept-Encoding", "gzip, deflate"),
-        ("User-Agent", user_agents.random()),
+        ("User-Agent", agent::random_agent().as_str()),
     ]);
     let client = client_builder.build()?;
     Ok(client)

