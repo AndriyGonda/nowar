@@ -1,5 +1,5 @@
-use rand::thread_rng;
 use rand::prelude::SliceRandom;
+use rand::thread_rng;
 
 pub fn random_agent() -> String {
     let agents_list = [
@@ -997,7 +997,7 @@ pub fn random_agent() -> String {
     let choosen_agent = agents_list.choose(&mut rng);
     let value: &str = match choosen_agent {
         None => agents_list[0],
-        Some(value) => value
+        Some(value) => value,
     };
     String::from(value)
 }

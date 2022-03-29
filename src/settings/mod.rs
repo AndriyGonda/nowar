@@ -1,13 +1,12 @@
-pub const PROXY_LIST: [&'static str; 1] = [
-    "https://raw.githubusercontent.com/opengs/uashieldtargets/v2/proxy.json",
-];
+pub const PROXY_LIST: &[&'static str] =
+    &["https://raw.githubusercontent.com/opengs/uashieldtargets/v2/proxy.json"];
 
-pub const SITES_ORIGINS: [&'static str; 2] = [
+pub const SITES_ORIGINS: &[&'static str] = &[
     "https://gitlab.com/jacobean_jerboa/sample/-/raw/main/sample",
     "https://raw.githubusercontent.com/opengs/uashieldtargets/v2/sites.json",
 ];
 
-pub const DEFAULT_TARGETS: [&'static str; 33] = [
+pub const DEFAULT_TARGETS: &[&'static str] = &[
     "https://www.kp.ru/",
     "https://ria.ru/",
     "https://lenta.ru/",
@@ -40,9 +39,8 @@ pub const DEFAULT_TARGETS: [&'static str; 33] = [
     "https://sbercontact.sberbank.ru/",
     "https://pmcloud.sberbank.ru/",
     "https://online.sberbank.ru/",
-    "https://apps.sberbank.ru/"
+    "https://apps.sberbank.ru/",
 ];
-
 
 pub const READ_TIMEOUT_SECONDS: u64 = 10;
 pub const READ_STATISTICS_INTERVAL: u64 = 30;
